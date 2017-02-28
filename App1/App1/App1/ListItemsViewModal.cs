@@ -16,18 +16,42 @@ namespace App1
             {
                 new ListItemsModal
                 {
-                    Name = "Hello",
-                    Price = "10$",
-                    PictureUrl = "image_temp.PNG",
-                    Detail = "This is Detail"
+                    Name = "Underwear Girl",
+                    Price = "15$",
+                    PictureUrl = "picture_a.jpg",
+                    Detail = "red, white"
                 },
 
                 new ListItemsModal
                 {
-                    Name = "Hello",
-                    Price = "10$",
-                    PictureUrl = "image_temp.PNG",
-                    Detail = "This is Detail"
+                    Name = "Pijama",
+                    Price = "21$",
+                    PictureUrl = "picture_b.jpg",
+                    Detail = "black, blue"
+                },
+
+                new ListItemsModal
+                {
+                    Name = "Handbag",
+                    Price = "29$",
+                    PictureUrl = "picture_c.jpg",
+                    Detail = "blue, white"
+                },
+
+                new ListItemsModal
+                {
+                    Name = "Shoes",
+                    Price = "20$",
+                    PictureUrl = "picture_d.jpg",
+                    Detail = "white, black"
+                },
+
+                new ListItemsModal
+                {
+                    Name = "T-Shirt Girl",
+                    Price = "11$",
+                    PictureUrl = "picture_e.jpg",
+                    Detail = "blue, black"
                 }
             };
 
