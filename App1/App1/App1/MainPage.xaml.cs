@@ -1,13 +1,12 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Net.Http;
 using Xamarin.Forms;
 
 namespace App1
 {
-	public partial class MainPage : ContentPage
+    public partial class MainPage : ContentPage
 	{
         /// <summary>
         /// Is Menu in show?
@@ -15,12 +14,7 @@ namespace App1
         private bool IsMenuPresented = false;
 
         public double InitTranslationXLeftMenuView { get; set; }
-
-
-        ///// <summary>
-        ///// Is Right Menu in show?
-        ///// </summary>
-        //public bool IsRightMenuPresented { get; set; } = false;
+        
 
         public MainPage()
         {
@@ -38,43 +32,58 @@ namespace App1
 
         private void InitUI()
         {
-            //// Rotate _LeftMenuIcon
-            //_LeftMenuIcon.Rotation = 180;
+            ListOptionsViewModal OptionsData = new ListOptionsViewModal();
+            ListViewOptions.ItemsSource = OptionsData.ListOptionData;
 
-            //// Set _RightMenuSide
-            ////_RightMenuSide.BackgroundColor = Color.FromRgba(0, 0, 0, 0.5);
-            //_RightMenuSide.FadeTo(0, 0);
+            
+            List<ListItemsModal> data = new List<ListItemsModal>();
+            LoadDataFromServer(data);
+            ListViewItem.ItemsSource = data;
+        }
 
-            //_LeftMenuView.TranslateTo((int)-(this.Width - 40), 0, 0);
 
-            ListOptions.ItemsSource = new List<ListOptionsModal>
+        private async void LoadDataFromServer(List<ListItemsModal> itemSource)
+        {
+            LoadingIcon.IsVisible = true;
+            LoadingIcon.IsRunning = true;
+
+            var client = new HttpClient(); //thiết lập HttpClient() để truyền dữ liệu bằng http
+            string url = "http://ilandapp.com/demoproject/projectlistitem/listitem.php"; //link chứa chuỗi Json.
+            var uri = new Uri(url); //Getlink
+            var response = await client.GetAsync(uri); //Kết nối với link giao thức Get
+            if (response.IsSuccessStatusCode) //Kiểm tra kết nối 
             {
-                new ListOptionsModal
+                var contentGet = await response.Content.ReadAsStringAsync();
+                //Đọc dữ liệu kết nối đưa vào biến contentGet
+                var items = JsonConvert.DeserializeObject<List<ListItemsModal>>(contentGet);
+                /*Dùng JsonConvert để đưa dữ liệu từ json (trong biến contentGet) thành 1 List với kiểu dữ liệu là data*/
+
+                LoadingIcon.IsRunning = false;
+                LoadingIcon.IsVisible = false;
+
+                foreach(ListItemsModal item in items)
                 {
-                    imgSource = "home.png",
-                    text = "Explore"
-                },
-                new ListOptionsModal
-                {
-                    imgSource = "list.png",
-                    text = "Activity"
-                },
-                new ListOptionsModal
-                {
-                    imgSource = "cart.png",
-                    text = "Cart"
-                },
-                new ListOptionsModal
-                {
-                    imgSource = "settings.png",
-                    text = "Settings"
-                },
-                new ListOptionsModal
-                {
-                    imgSource = "exit.png",
-                    text = "Log out"
-                },
-            };
+
+                    itemSource.Add(new ListItemsModal
+                    {
+                        Name = item.Name,
+                        Price = item.Price,
+                        PictureUrl = "image_temp.PNG",
+                        Detail = item.Detail,
+                        CommandEvent = new Command(Ontap)
+                    });
+                }
+            }
+
+        }
+
+
+        /// <summary>
+        /// Event when tap on button add on each item
+        /// </summary>
+        private void Ontap()
+        {
+            DisplayAlert("Demo", "Demo: add to cart", "OK");
         }
 
         private void AddClickListener()
@@ -83,14 +92,7 @@ namespace App1
             TapGestureRecognizer tapLeftMenuIcon = new TapGestureRecognizer();
             tapLeftMenuIcon.Tapped += (s, e) => OnClickLeftMenuIcon();
             _LeftMenuIcon.GestureRecognizers.Add(tapLeftMenuIcon);
-
-            //// Add Tap Gesture for _RightMenuIcon
-            //TapGestureRecognizer tapRightMenuIcon = new TapGestureRecognizer();
-            //tapRightMenuIcon.Tapped += (s, e) => OnClickRightMenuIcon();
-            //_RightMenuIcon.GestureRecognizers.Add(tapRightMenuIcon);
-
-            //// Add Tap Gesture when tap on _RightMenuSide
-            //_RightMenuSide.GestureRecognizers.Add(tapRightMenuIcon);
+            
         }
 
         private void OnClickLeftMenuIcon()
@@ -121,38 +123,5 @@ namespace App1
             // Reset IsPresented value
             IsMenuPresented = !IsMenuPresented;
         }
-
-        //private async void OnClickRightMenuIcon()
-        //{
-        //    if (!IsRightMenuPresented)
-        //    {
-        //        // Rotate _LeftMenuIcon
-        //        //_RightMenuIcon.RotateTo(180, 50);
-
-        //        // Slide _RightMenuView and and put _RightMenuSide to the left
-        //        _RightMenuView.TranslateTo(0, 0, 400, Easing.CubicOut);
-        //        _RightMenuSide.TranslateTo(0, 0, 0);
-
-        //        // Show _RightMenuSide
-        //        _RightMenuSide.FadeTo(0.8, 200);
-        //    }
-        //    else
-        //    {
-        //        // Rotate _LeftMenuIcon
-        //        //_RightMenuIcon.RotateTo(0, 50);
-
-        //        // Slide _RightMenuView to the Right
-        //        _RightMenuView.TranslateTo(this.Width, 0, 400, Easing.CubicOut);
-
-        //        // Hide _RightMenuSide
-        //        await _RightMenuSide.FadeTo(0, 200);
-
-        //        // Put _RightMenuSide to the Right
-        //        _RightMenuSide.TranslateTo(this.Width, 0, 0);
-        //    }
-
-        //    // Reset IsPresented value
-        //    IsRightMenuPresented = !IsRightMenuPresented;
-        //}
     }
 }
