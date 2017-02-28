@@ -16,7 +16,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ListItemsModal.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ListItemsViewModal.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ListOptionsModal.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ListOptionsViewModal.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LocalListItem.cs" />
