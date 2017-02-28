@@ -13,8 +13,9 @@ namespace App1
 		{
 			InitializeComponent();
 
-			MainPage = new MainPage();
-		}
+            MainPage = new MainPage();
+            //MainPage = new HomePage();
+        }
 
 		protected override void OnStart ()
 		{

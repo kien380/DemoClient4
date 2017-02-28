@@ -17,5 +17,7 @@ namespace App1
         public string Detail { get; set; }
 
         public ICommand CommandEvent { get; set; }
+
+        public UriImageSource PictureURI { get; set; }
     }
 }

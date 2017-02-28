@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace App1
 {
-	public partial class HomePage : MasterDetailPage
+	public partial class HomePage : ContentPage
 	{
 		public HomePage ()
         {

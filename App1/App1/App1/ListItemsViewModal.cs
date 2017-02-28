@@ -12,24 +12,24 @@ namespace App1
 
         public ListItemsViewModal()
         {
-            //ListItemsData = new List<ListItemsModal>
-            //{
-            //    new ListItemsModal
-            //    {
-            //        Name = "Hello",
-            //        Price = "10$",
-            //        PictureUrl = "image_temp.PNG",
-            //        Detail = "This is Detail"
-            //    },
+            ListItemsData = new List<ListItemsModal>
+            {
+                new ListItemsModal
+                {
+                    Name = "Hello",
+                    Price = "10$",
+                    PictureUrl = "image_temp.PNG",
+                    Detail = "This is Detail"
+                },
 
-            //    new ListItemsModal
-            //    {
-            //        Name = "Hello",
-            //        Price = "10$",
-            //        PictureUrl = "image_temp.PNG",
-            //        Detail = "This is Detail"
-            //    }
-            //};
+                new ListItemsModal
+                {
+                    Name = "Hello",
+                    Price = "10$",
+                    PictureUrl = "image_temp.PNG",
+                    Detail = "This is Detail"
+                }
+            };
 
             //LoadDataFromServer();
         }

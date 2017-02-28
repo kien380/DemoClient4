@@ -19,6 +19,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ListItemsViewModal.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ListOptionsModal.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ListOptionsViewModal.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LocalListItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

@@ -35,10 +35,13 @@ namespace App1
             ListOptionsViewModal OptionsData = new ListOptionsViewModal();
             ListViewOptions.ItemsSource = OptionsData.ListOptionData;
 
-            
-            List<ListItemsModal> data = new List<ListItemsModal>();
-            LoadDataFromServer(data);
-            ListViewItem.ItemsSource = data;
+
+            //List<ListItemsModal> data = new List<ListItemsModal>();
+            //LoadDataFromServer(data);
+            //ListViewItem.ItemsSource = data;
+
+            ListItemsViewModal ItemData = new ListItemsViewModal();
+            ListViewItem.ItemsSource = ItemData.ListItemsData;
         }
 
 
@@ -68,11 +71,18 @@ namespace App1
                     {
                         Name = item.Name,
                         Price = item.Price,
-                        PictureUrl = "image_temp.PNG",
+                        PictureURI = new UriImageSource
+                        {
+                            Uri = new Uri(item.PictureUrl),
+                            CachingEnabled = true,
+                            CacheValidity = new TimeSpan(5, 0, 0, 0)
+                        },
                         Detail = item.Detail,
                         CommandEvent = new Command(Ontap)
                     });
                 }
+
+                
             }
 
         }
