@@ -36,12 +36,64 @@ namespace App1
             ListViewOptions.ItemsSource = OptionsData.ListOptionData;
 
 
+            // ========== Load data from server ============
             //List<ListItemsModal> data = new List<ListItemsModal>();
             //LoadDataFromServer(data);
             //ListViewItem.ItemsSource = data;
+            
+            // ============ Load Local data ================
+            var ItemData = new List<ListItemsModal>
+            {
+                new ListItemsModal
+                {
+                    Name = "Underwear Girl",
+                    Price = "15$",
+                    PictureUrl = "picture_a.jpg",
+                    Detail = "red, white",
+                    CommandEvent = new Command(Ontap)
+                },
 
-            ListItemsViewModal ItemData = new ListItemsViewModal();
-            ListViewItem.ItemsSource = ItemData.ListItemsData;
+                new ListItemsModal
+                {
+                    Name = "Pijama",
+                    Price = "21$",
+                    PictureUrl = "picture_b.jpg",
+                    Detail = "black, blue",
+                    CommandEvent = new Command(Ontap)
+                },
+
+                new ListItemsModal
+                {
+                    Name = "Handbag",
+                    Price = "29$",
+                    PictureUrl = "picture_c.jpg",
+                    Detail = "blue, white",
+                    CommandEvent = new Command(Ontap)
+                },
+
+                new ListItemsModal
+                {
+                    Name = "Shoes",
+                    Price = "20$",
+                    PictureUrl = "picture_d.jpg",
+                    Detail = "white, black",
+                    CommandEvent = new Command(Ontap)
+                },
+
+                new ListItemsModal
+                {
+                    Name = "T-Shirt Girl",
+                    Price = "11$",
+                    PictureUrl = "picture_e.jpg",
+                    Detail = "blue, black",
+                    CommandEvent = new Command(Ontap)
+                }
+
+
+            };
+
+
+            ListViewItem.ItemsSource = ItemData;
         }
 
 
