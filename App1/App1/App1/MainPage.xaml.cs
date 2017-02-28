@@ -37,63 +37,59 @@ namespace App1
 
 
             // ========== Load data from server ============
-            //List<ListItemsModal> data = new List<ListItemsModal>();
-            //LoadDataFromServer(data);
-            //ListViewItem.ItemsSource = data;
-            
+            List<ListItemsModal> data = new List<ListItemsModal>();
+            LoadDataFromServer(data);
+            ListViewItem.ItemsSource = data;
+
             // ============ Load Local data ================
-            var ItemData = new List<ListItemsModal>
-            {
-                new ListItemsModal
-                {
-                    Name = "Underwear Girl",
-                    Price = "15$",
-                    PictureUrl = "picture_a.jpg",
-                    Detail = "red, white",
-                    CommandEvent = new Command(Ontap)
-                },
+            //var ItemData = new List<ListItemsModal>
+            //{
+            //    new ListItemsModal
+            //    {
+            //        Name = "Underwear Girl",
+            //        Price = "15$",
+            //        PictureUrl = "picture_a.jpg",
+            //        Detail = "red, white",
+            //        CommandEvent = new Command(Ontap)
+            //    },
 
-                new ListItemsModal
-                {
-                    Name = "Pijama",
-                    Price = "21$",
-                    PictureUrl = "picture_b.jpg",
-                    Detail = "black, blue",
-                    CommandEvent = new Command(Ontap)
-                },
+            //    new ListItemsModal
+            //    {
+            //        Name = "Pijama",
+            //        Price = "21$",
+            //        PictureUrl = "picture_b.jpg",
+            //        Detail = "black, blue",
+            //        CommandEvent = new Command(Ontap)
+            //    },
 
-                new ListItemsModal
-                {
-                    Name = "Handbag",
-                    Price = "29$",
-                    PictureUrl = "picture_c.jpg",
-                    Detail = "blue, white",
-                    CommandEvent = new Command(Ontap)
-                },
+            //    new ListItemsModal
+            //    {
+            //        Name = "Handbag",
+            //        Price = "29$",
+            //        PictureUrl = "picture_c.jpg",
+            //        Detail = "blue, white",
+            //        CommandEvent = new Command(Ontap)
+            //    },
 
-                new ListItemsModal
-                {
-                    Name = "Shoes",
-                    Price = "20$",
-                    PictureUrl = "picture_d.jpg",
-                    Detail = "white, black",
-                    CommandEvent = new Command(Ontap)
-                },
+            //    new ListItemsModal
+            //    {
+            //        Name = "Shoes",
+            //        Price = "20$",
+            //        PictureUrl = "picture_d.jpg",
+            //        Detail = "white, black",
+            //        CommandEvent = new Command(Ontap)
+            //    },
 
-                new ListItemsModal
-                {
-                    Name = "T-Shirt Girl",
-                    Price = "11$",
-                    PictureUrl = "picture_e.jpg",
-                    Detail = "blue, black",
-                    CommandEvent = new Command(Ontap)
-                }
-
-
-            };
-
-
-            ListViewItem.ItemsSource = ItemData;
+            //    new ListItemsModal
+            //    {
+            //        Name = "T-Shirt Girl",
+            //        Price = "11$",
+            //        PictureUrl = "picture_e.jpg",
+            //        Detail = "blue, black",
+            //        CommandEvent = new Command(Ontap)
+            //    }
+            //};
+            //ListViewItem.ItemsSource = ItemData;
         }
 
 
@@ -103,7 +99,7 @@ namespace App1
             LoadingIcon.IsRunning = true;
 
             var client = new HttpClient(); //thiết lập HttpClient() để truyền dữ liệu bằng http
-            string url = "http://ilandapp.com/demoproject/projectlistitem/listitem.php"; //link chứa chuỗi Json.
+            string url = "http://ilandapp.com/demoproject/projectlistitem/listitem.php?pass=12569"; //link chứa chuỗi Json.
             var uri = new Uri(url); //Getlink
             var response = await client.GetAsync(uri); //Kết nối với link giao thức Get
             if (response.IsSuccessStatusCode) //Kiểm tra kết nối 
@@ -116,7 +112,8 @@ namespace App1
                 LoadingIcon.IsRunning = false;
                 LoadingIcon.IsVisible = false;
 
-                foreach(ListItemsModal item in items)
+
+                foreach (ListItemsModal item in items)
                 {
 
                     itemSource.Add(new ListItemsModal
@@ -132,9 +129,9 @@ namespace App1
                         Detail = item.Detail,
                         CommandEvent = new Command(Ontap)
                     });
-                }
 
-                
+                    //await DisplayAlert("", item.PictureUrl, "OK");
+                }
             }
 
         }
