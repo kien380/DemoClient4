@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:App1"
+             x:Class="App1.MainPage">
+
+    <Grid ColumnSpacing="0">
+        <!--#region Menu (Master View)-->
+        <Grid ColumnSpacing="0" 
+              TranslationX="{Binding InitTranslationXLeftMenuView}"
+              BackgroundColor="#272c30">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="40"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackLayout x:Name="_LeftMenuView"
+                         Padding="10,20,20,20"
+                         Grid.Column="0"
+                         Grid.Row="0"
+                         Margin="0,0,0,10">
+                <SearchBar HorizontalOptions="Fill"
+                           Placeholder="Search"
+                           PlaceholderColor="White"
+                           Margin="0,0,0,10" />
+                <Image Source="avatar_user.png"
+                       WidthRequest="120"
+                       HeightRequest="120"/>
+                <Label Text="Hai Nguyen Hong"
+                       TextColor="White"
+                       HorizontalOptions="Center"
+                       FontSize="20"
+                       Margin="0,0,0,15"/>
+                <ListView x:Name="ListViewOptions" RowHeight="55" BackgroundColor="#272c30">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal"
+                                             Padding="10,10,5,10">
+                                    <Image Source="{Binding imgSource}"
+                                           WidthRequest="35"
+                                           HeightRequest="35"/>
+                                    <Label Text="{Binding text}"
+                                           TextColor="White"
+                                           VerticalOptions="Center"
+                                           FontSize="15"
+                                           Margin="15,0,0,0"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </Grid>
+        <!--#endregion-->
+
+
+        <!--#region Detail View-->
+        <Grid x:Name="_DetailView"
+              BackgroundColor="#222222">
+            <!--#region Grid Definitions-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <!--#endregion-->
+            
+            <!--#region Header-->
+            <Grid x:Name="_PageHeader"
+                  VerticalOptions="Start"
+                  BackgroundColor="Orange"
+                  Padding="10,10,10,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="35"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="35"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Menu option Icon -->
+                <StackLayout x:Name="_LeftMenuIcon" 
+                             Grid.Column="0"
+                             Grid.Row="0">
+                    <Image Source="menu.png"
+                           WidthRequest="35"
+                           HeightRequest="35"
+                           VerticalOptions="CenterAndExpand"/>
+                </StackLayout>
+
+                <!-- Title Page -->
+                <Label Text="Movie Schadule"
+                       TextColor="White"
+                       FontSize="Large"
+                       HorizontalOptions="CenterAndExpand"
+                       Grid.Column="1"
+                       Grid.Row="0"
+                       Margin="0,10,0,10"/>
+            </Grid>
+            <!--#endregion-->
+            
+            <!--#region Studio Picker-->
+            <StackLayout Orientation="Horizontal"
+                         Grid.Row="1">
+                <Label Text="Studio: "/>
+                <Picker x:Name="StudioPicker"
+                        />
+            </StackLayout>
+            <!--#endregion-->
+
+            <!--#region Movie Schedule-->
+            <StackLayout x:Name="MovieScheduleView"
+                         Grid.Row="2">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Cinema: "/>
+                    <Picker x:FieldModifier="CinemaPicker"/>
+                </StackLayout>
+                <ListView>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid>
+                                    
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <!--#endregion-->
+
+            <!--#region Ticket Price-->
+            <Grid x:Name="TicketPriceView"
+                  Grid.Row="2"
+                  IsVisible="False">
+                
+            </Grid>
+            <!--#endregion-->
+        </Grid>
+        <!--#endregion-->
+    </Grid>
+
+</ContentPage>
