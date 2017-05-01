@@ -8,14 +8,16 @@ namespace App1
 {
     public partial class MainPage : ContentPage
 	{
+        #region VARIABLES DECLARETION
         /// <summary>
         /// Is Menu in show?
         /// </summary>
         private bool IsMenuPresented = false;
 
         public double InitTranslationXLeftMenuView { get; set; }
-        
+        #endregion
 
+        #region CONSTRUCTORS
         public MainPage()
         {
             // Hide navigation bar
@@ -28,9 +30,17 @@ namespace App1
 
             InitUI();
         }
+        #endregion
 
+        #region METHODS
         private void InitUI()
         {
+            ListMenuOption.ItemsSource = new List<MenuOption>()
+            {
+                new MenuOption { Text = "Movie Schedule", ImageSource = "list.png" },
+                new MenuOption { Text = "Ticket Price", ImageSource = "price_tag.png" }
+            };
+
             // Init TapGesture on Left menu icon
             var tapLeftMenu = new TapGestureRecognizer();
             tapLeftMenu.Tapped += (se, ev) => { OnClickLeftMenuIcon(); };
@@ -77,5 +87,44 @@ namespace App1
             // Reset IsPresented value
             IsMenuPresented = !IsMenuPresented;
         }
+        #endregion
+
+        #region EVENT HANDLE
+        private void StudioPicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Change Studio logo
+            switch(StudioPicker.SelectedIndex)
+            {
+                case 0: StudioLogo.Source = "lotte_logo.png"; break;
+                case 1: StudioLogo.Source = "cgv_logo.png"; break;
+                case 2: StudioLogo.Source = "galaxy_logo.png"; break;
+                case 3: StudioLogo.Source = "bhd_logo.png"; break;
+                default: StudioLogo.Source = "lotte_logo.png"; break;
+            }
+        }
+
+        private void Picker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ListMenuOption_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            ListMenuOption.SelectedItem = null;
+            var item = e.Item as MenuOption;
+            if(item.Text.Equals("Movie Schedule"))
+            {
+                MovieScheduleView.IsVisible = true;
+                TicketPriceView.IsVisible = false;
+            }
+            else
+            {
+                MovieScheduleView.IsVisible = false;
+                TicketPriceView.IsVisible = true;
+            }
+            HeaderTitle.Text = item.Text;
+            OnClickLeftMenuIcon();
+        }
+        #endregion
     }
 }

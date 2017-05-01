@@ -152,19 +152,22 @@
     <AndroidResource Include="Resources\Drawable\blue_button.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\Drawable\picture_a.jpg" />
+    <AndroidResource Include="Resources\Drawable\lotte_logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\Drawable\picture_c.jpg" />
+    <AndroidResource Include="Resources\Drawable\bhd_logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\Drawable\picture_b.jpg" />
+    <AndroidResource Include="Resources\Drawable\cgv_logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\Drawable\picture_d.jpg" />
+    <AndroidResource Include="Resources\Drawable\galaxy_logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\Drawable\picture_e.jpg" />
+    <AndroidResource Include="Resources\Drawable\price_tag.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\lotte_thuduc_ticketprice.png" />
   </ItemGroup>
   <Import Project="..\App1\App1.projitems" Label="Shared" Condition="Exists('..\App1\App1.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
