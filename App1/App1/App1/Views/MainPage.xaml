@@ -34,16 +34,19 @@
                        HorizontalOptions="Center"
                        FontSize="20"
                        Margin="0,0,0,15"/>
-                <ListView x:Name="ListViewOptions" RowHeight="55" BackgroundColor="#272c30">
+                <ListView x:Name="ListMenuOption"
+                          RowHeight="55" 
+                          BackgroundColor="#272c30" 
+                          ItemTapped="ListMenuOption_ItemTapped">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <StackLayout Orientation="Horizontal"
                                              Padding="10,10,5,10">
-                                    <Image Source="{Binding imgSource}"
+                                    <Image Source="{Binding ImageSource}"
                                            WidthRequest="35"
                                            HeightRequest="35"/>
-                                    <Label Text="{Binding text}"
+                                    <Label Text="{Binding Text}"
                                            TextColor="White"
                                            VerticalOptions="Center"
                                            FontSize="15"
@@ -73,7 +76,7 @@
             <Grid x:Name="_PageHeader"
                   VerticalOptions="Start"
                   BackgroundColor="Orange"
-                  Padding="10,10,10,0">
+                  Padding="10,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="35"/>
                     <ColumnDefinition Width="*"/>
@@ -91,7 +94,8 @@
                 </StackLayout>
 
                 <!-- Title Page -->
-                <Label Text="Movie Schadule"
+                <Label x:Name="HeaderTitle"
+                       Text="Movie Schadule"
                        TextColor="White"
                        FontSize="Large"
                        HorizontalOptions="CenterAndExpand"
@@ -101,29 +105,60 @@
             </Grid>
             <!--#endregion-->
             
-            <!--#region Studio Picker-->
-            <StackLayout Orientation="Horizontal"
-                         Grid.Row="1">
-                <Label Text="Studio: "/>
+            <!--#region Pickers-->
+            <Grid Grid.Row="1"
+                  Padding="10,0">
+                <!-- Definitions-->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Studio Picker -->
+                <Label Text="Studio: "
+                       FontSize="Medium"
+                       VerticalTextAlignment="Center"/>
                 <Picker x:Name="StudioPicker"
-                        />
-            </StackLayout>
+                        Grid.Column="1"
+                        SelectedIndexChanged="StudioPicker_SelectedIndexChanged"/>
+                <Image x:Name="StudioLogo"
+                       VerticalOptions="Center"
+                       HeightRequest="30"
+                       Source="lotte_logo.png"
+                       Grid.Column="2"/>
+
+                <!-- Cinema Picker -->
+                <Label Text="Cinema: "
+                       FontSize="Medium"
+                       Grid.Row="1"
+                       VerticalTextAlignment="Center"/>
+                <Picker x:FieldModifier="CinemaPicker"
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        Grid.ColumnSpan="2"
+                        SelectedIndexChanged="Picker_SelectedIndexChanged"/>
+            </Grid>
             <!--#endregion-->
 
             <!--#region Movie Schedule-->
             <StackLayout x:Name="MovieScheduleView"
-                         Grid.Row="2">
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="Cinema: "/>
-                    <Picker x:FieldModifier="CinemaPicker"/>
-                </StackLayout>
+                         Grid.Row="2"
+                         Padding="10,0">
                 <ListView>
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Grid>
-                                    
-                                </Grid>
+                                <StackLayout>
+                                    <Label Text="Ten Phim"
+                                           FontSize="Medium"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="Suat Chieu"/>
+                                </StackLayout>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -135,7 +170,12 @@
             <Grid x:Name="TicketPriceView"
                   Grid.Row="2"
                   IsVisible="False">
-                
+                <!--<local:PinchToZoomContainer>
+                    <Image Source="lotte_thuduc_ticketprice.png"/>
+                </local:PinchToZoomContainer>-->
+                <local:ZoomImage Source="lotte_thuduc_ticketprice.png"
+                                 WidthRequest="{Binding Source={x:Reference TicketPriceView}, Path=Witdh}"
+                                 HeightRequest="{Binding Source={x:Reference TicketPriceView}, Path=Height}"/>
             </Grid>
             <!--#endregion-->
         </Grid>

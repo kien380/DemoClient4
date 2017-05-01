@@ -17,7 +17,11 @@ namespace App1
             //MainPage = new HomePage();
         }
 
-		protected override void OnStart ()
+        public static double ScreenWidth { get { return Application.Current.MainPage.Width; } }
+        public static double ScreenHeight { get { return Application.Current.MainPage.Height; } }
+
+
+        protected override void OnStart ()
 		{
 			// Handle when your app starts
 		}

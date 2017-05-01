@@ -176,19 +176,19 @@
     <BundleResource Include="Resources\blue_button.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\picture_a.jpg" />
+    <BundleResource Include="Resources\lotte_logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\picture_c.jpg" />
+    <BundleResource Include="Resources\bhd_logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\picture_b.jpg" />
+    <BundleResource Include="Resources\cgv_logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\picture_d.jpg" />
+    <BundleResource Include="Resources\galaxy_logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\picture_e.jpg" />
+    <BundleResource Include="Resources\price_tag.png" />
   </ItemGroup>
   <Import Project="..\App1\App1.projitems" Label="Shared" Condition="Exists('..\App1\App1.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
