@@ -164,9 +164,6 @@
     <BundleResource Include="Resources\settings.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\avatar_user.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\like.png" />
   </ItemGroup>
   <ItemGroup>
@@ -189,6 +186,9 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\price_tag.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\logo_ise_entertainment.png" />
   </ItemGroup>
   <Import Project="..\App1\App1.projitems" Label="Shared" Condition="Exists('..\App1\App1.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
