@@ -140,9 +140,6 @@
     <AndroidResource Include="Resources\Drawable\settings.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\Drawable\avatar_user.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\Drawable\like.png" />
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +165,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Drawable\lotte_thuduc_ticketprice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\logo_ise_entertainment.png" />
   </ItemGroup>
   <Import Project="..\App1\App1.projitems" Label="Shared" Condition="Exists('..\App1\App1.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

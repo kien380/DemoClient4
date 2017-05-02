@@ -26,14 +26,15 @@
                            Placeholder="Search"
                            PlaceholderColor="White"
                            Margin="0,0,0,10" />
-                <Image Source="avatar_user.png"
+                <Image Source="logo_ise_entertainment.png"
                        WidthRequest="120"
-                       HeightRequest="120"/>
-                <Label Text="Hai Nguyen Hong"
+                       HeightRequest="120"
+                       Margin="0, 20"/>
+                <!--<Label Text="ISE Entertainment"
                        TextColor="White"
                        HorizontalOptions="Center"
                        FontSize="20"
-                       Margin="0,0,0,15"/>
+                       Margin="0,0,0,15"/>-->
                 <ListView x:Name="ListMenuOption"
                           RowHeight="55" 
                           BackgroundColor="#272c30" 
@@ -95,7 +96,7 @@
 
                 <!-- Title Page -->
                 <Label x:Name="HeaderTitle"
-                       Text="Movie Schadule"
+                       Text="Lịch Chiếu"
                        TextColor="White"
                        FontSize="Large"
                        HorizontalOptions="CenterAndExpand"
@@ -104,9 +105,18 @@
                        Margin="0,10,0,10"/>
             </Grid>
             <!--#endregion-->
-            
+
+            <ActivityIndicator x:Name="IndicatorLoading"
+                               IsRunning="True"
+                               IsVisible="True"
+                               VerticalOptions="CenterAndExpand"
+                               HorizontalOptions="CenterAndExpand"
+                               Grid.Row="1"
+                               Grid.RowSpan="2"/>
+
             <!--#region Pickers-->
-            <Grid Grid.Row="1"
+            <Grid x:Name="Pickers"
+                  Grid.Row="1"
                   Padding="10,0">
                 <!-- Definitions-->
                 <Grid.ColumnDefinitions>
@@ -129,7 +139,7 @@
                 <Image x:Name="StudioLogo"
                        VerticalOptions="Center"
                        HeightRequest="30"
-                       Source="lotte_logo.png"
+                       Source="cgv_logo.png"
                        Grid.Column="2"/>
 
                 <!-- Cinema Picker -->
@@ -137,11 +147,11 @@
                        FontSize="Medium"
                        Grid.Row="1"
                        VerticalTextAlignment="Center"/>
-                <Picker x:FieldModifier="CinemaPicker"
+                <Picker x:Name="CinemaPicker"
                         Grid.Column="1"
                         Grid.Row="1"
                         Grid.ColumnSpan="2"
-                        SelectedIndexChanged="Picker_SelectedIndexChanged"/>
+                        SelectedIndexChanged="CinemaPicker_SelectedIndexChanged"/>
             </Grid>
             <!--#endregion-->
 
@@ -149,15 +159,18 @@
             <StackLayout x:Name="MovieScheduleView"
                          Grid.Row="2"
                          Padding="10,0">
-                <ListView>
+                <ListView x:Name="ListViewLichChieu"
+                          HasUnevenRows="True"
+                          ItemSelected="ListViewLichChieu_ItemSelected">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout>
-                                    <Label Text="Ten Phim"
+                                <StackLayout Padding="10, 20">
+                                    <Label Text="{Binding filmname}"
                                            FontSize="Medium"
                                            FontAttributes="Bold"/>
-                                    <Label Text="Suat Chieu"/>
+                                    <Label Text="{Binding theloai}"/>
+                                    <Label Text="{Binding thoigian}"/>
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>

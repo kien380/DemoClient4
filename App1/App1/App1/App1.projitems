@@ -15,7 +15,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Customs\PinchToZoomContainer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Customs\ZoomImage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helper\Service.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Cinema.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\LichChieu.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\MenuOption.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Studio.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
