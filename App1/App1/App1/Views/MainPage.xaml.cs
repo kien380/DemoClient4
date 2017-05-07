@@ -19,10 +19,11 @@ namespace App1
 
         private List<Studio> Studios = new List<Studio>();
         private List<Cinema> Cinemas = new List<Cinema>();
-        private List<LichChieu> DSLichChieu = new List<LichChieu>();
+        //private List<LichChieu> DSLichChieu = new List<LichChieu>();
 
         private bool IsInitting = true;
         private bool IsStudioChanging = false;
+        private bool IsTicketPriceInShow = false;
         #endregion
 
         #region CONSTRUCTORS
@@ -45,7 +46,7 @@ namespace App1
         private void InitUI()
         {
             Pickers.IsVisible = false;
-            MovieScheduleView.IsVisible = false;
+            ShowLoading();
 
             ListMenuOption.ItemsSource = new List<MenuOption>()
             {
@@ -87,24 +88,22 @@ namespace App1
                 {
                     // Lấy danh sách lịch chiếu phim của rạp đầu tiên
                     var getLichChieu = await service.GetLichChieu(getCinemas[0].UrlRap);
-                    foreach (var lichchieu in getLichChieu)
-                    {
-                        lichchieu.CinemaId = getCinemas[0].Id;
-                        DSLichChieu.Add(lichchieu);
-                    }
-
+                    ListViewLichChieu.ItemsSource = getLichChieu;
                     // Set mặc định ban đầu
                     CinemaPicker.SelectedIndex = 0;
+                    // Set image giá vé
+                    TicketPriceImage.Source = new UriImageSource()
+                    {
+                        Uri = new Uri(Cinemas[0].UrlImg),
+                        CachingEnabled = true,
+                        CacheValidity = new TimeSpan(1, 0, 0, 0)
+                    };
                 }
             }
 
-            ListViewLichChieu.ItemsSource = DSLichChieu;
-
             // Hiển thị thông tin
             Pickers.IsVisible = true;
-            MovieScheduleView.IsVisible = true;
-            IndicatorLoading.IsVisible = false;
-            IndicatorLoading.IsRunning = false;
+            HideLoading();
 
             IsInitting = false;
         }
@@ -147,6 +146,24 @@ namespace App1
             // Reset IsPresented value
             IsMenuPresented = !IsMenuPresented;
         }
+
+        private void ShowLoading()
+        {
+            // Hiển thị indicator loading
+            MovieScheduleView.IsVisible = false;
+            TicketPriceView.IsVisible = false;
+            IndicatorLoading.IsVisible = true;
+            IndicatorLoading.IsRunning = true;
+        }
+
+        private void HideLoading()
+        {
+            // Hiển thị thông tin
+            MovieScheduleView.IsVisible = !IsTicketPriceInShow;
+            TicketPriceView.IsVisible = IsTicketPriceInShow;
+            IndicatorLoading.IsVisible = false;
+            IndicatorLoading.IsRunning = false;
+        }
         #endregion
 
         #region EVENT HANDLE
@@ -155,11 +172,7 @@ namespace App1
             if(!IsInitting)
             {
                 IsStudioChanging = true;
-
-                // Hiển thị indicator loading
-                MovieScheduleView.IsVisible = false;
-                IndicatorLoading.IsVisible = true;
-                IndicatorLoading.IsRunning = true;
+                ShowLoading();
 
                 // Change Studio logo
                 switch (StudioPicker.SelectedIndex)
@@ -184,28 +197,25 @@ namespace App1
                     CinemaPicker.Items.Add(cinema.Name);
                 }
 
-                DSLichChieu.Clear();
                 if (getCinemas.Count > 0)
                 {
                     // Lấy danh sách lịch chiếu phim của rạp đầu tiên
                     var getLichChieu = await service.GetLichChieu(getCinemas[0].UrlRap);
-                    foreach (var lichchieu in getLichChieu)
-                    {
-                        lichchieu.CinemaId = getCinemas[0].Id;
-                        DSLichChieu.Add(lichchieu);
-                    }
+                    ListViewLichChieu.ItemsSource = getLichChieu;
 
                     // Set mặc định ban đầu
                     CinemaPicker.SelectedIndex = 0;
+
+                    // Set image giá vé
+                    TicketPriceImage.Source = new UriImageSource()
+                    {
+                        Uri = new Uri(getCinemas[0].UrlImg),
+                        CachingEnabled = true,
+                        CacheValidity = new TimeSpan(1,0,0,0)
+                    };
                 }
 
-                ListViewLichChieu.ItemsSource = DSLichChieu;
-
-                // Hiển thị thông tin
-                MovieScheduleView.IsVisible = true;
-                IndicatorLoading.IsVisible = false;
-                IndicatorLoading.IsRunning = false;
-
+                HideLoading();
                 IsStudioChanging = false;
             }
         }
@@ -214,28 +224,22 @@ namespace App1
         {
             if (!IsInitting && !IsStudioChanging)
             {
-                // Hiển thị indicator loading
-                MovieScheduleView.IsVisible = false;
-                IndicatorLoading.IsVisible = true;
-                IndicatorLoading.IsRunning = true;
-
-                DSLichChieu.Clear();
-
+                ShowLoading();
+                
                 // Lấy danh sách lịch chiếu phim
                 var service = new Service();
                 var getLichChieu = await service.GetLichChieu(Cinemas[CinemaPicker.SelectedIndex].UrlRap);
-                foreach (var lichchieu in getLichChieu)
+                ListViewLichChieu.ItemsSource = getLichChieu;
+
+                // Set image giá vé
+                TicketPriceImage.Source = new UriImageSource()
                 {
-                    lichchieu.CinemaId = Cinemas[CinemaPicker.SelectedIndex].Id;
-                    DSLichChieu.Add(lichchieu);
-                }
+                    Uri = new Uri(Cinemas[CinemaPicker.SelectedIndex].UrlImg),
+                    CachingEnabled = true,
+                    CacheValidity = new TimeSpan(1, 0, 0, 0)
+                };
 
-                ListViewLichChieu.ItemsSource = DSLichChieu;
-
-                // Hiển thị thông tin
-                MovieScheduleView.IsVisible = true;
-                IndicatorLoading.IsVisible = false;
-                IndicatorLoading.IsRunning = false;
+                HideLoading();
             }
         }
 
@@ -247,11 +251,13 @@ namespace App1
             {
                 MovieScheduleView.IsVisible = true;
                 TicketPriceView.IsVisible = false;
+                IsTicketPriceInShow = false;
             }
             else
             {
                 MovieScheduleView.IsVisible = false;
                 TicketPriceView.IsVisible = true;
+                IsTicketPriceInShow = true;
             }
             HeaderTitle.Text = item.Text;
             OnClickLeftMenuIcon();
