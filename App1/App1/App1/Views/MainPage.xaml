@@ -7,17 +7,19 @@
     <Grid ColumnSpacing="0">
         <!--#region Menu (Master View)-->
         <Grid ColumnSpacing="0" 
+              x:Name="_LeftMenuView"
               TranslationX="{Binding InitTranslationXLeftMenuView}"
-              BackgroundColor="#272c30">
+              BackgroundColor="#c46210">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="40"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <StackLayout x:Name="_LeftMenuView"
+            <StackLayout 
                          Padding="10,20,20,20"
                          Grid.Column="0"
                          Grid.Row="0"
@@ -26,7 +28,7 @@
                            Placeholder="Search"
                            PlaceholderColor="White"
                            Margin="0,0,0,10" />
-                <Image Source="logo_ise_entertainment.png"
+                <Image Source="app_icon.png"
                        WidthRequest="120"
                        HeightRequest="120"
                        Margin="0, 20"/>
@@ -35,36 +37,38 @@
                        HorizontalOptions="Center"
                        FontSize="20"
                        Margin="0,0,0,15"/>-->
-                <ListView x:Name="ListMenuOption"
-                          RowHeight="55" 
-                          BackgroundColor="#272c30" 
+            </StackLayout>
+            
+            <ListView x:Name="ListMenuOption"
+                      Grid.Row="1"
+                      BackgroundColor="#fb9902"
+                      HasUnevenRows="True"
                           ItemTapped="ListMenuOption_ItemTapped">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <StackLayout Orientation="Horizontal"
-                                             Padding="10,10,5,10">
-                                    <Image Source="{Binding ImageSource}"
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal"
+                                             Padding="20">
+                                <Image Source="{Binding ImageSource}"
                                            WidthRequest="35"
                                            HeightRequest="35"/>
-                                    <Label Text="{Binding Text}"
+                                <Label Text="{Binding Text}"
                                            TextColor="White"
                                            VerticalOptions="Center"
                                            FontSize="15"
                                            Margin="15,0,0,0"/>
-                                </StackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </Grid>
         <!--#endregion-->
 
 
         <!--#region Detail View-->
         <Grid x:Name="_DetailView"
-              BackgroundColor="#222222">
+              BackgroundColor="White">
             <!--#region Grid Definitions-->
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -76,8 +80,14 @@
             <!--#region Header-->
             <Grid x:Name="_PageHeader"
                   VerticalOptions="Start"
-                  BackgroundColor="Orange"
-                  Padding="10,0">
+                  BackgroundColor="Orange">
+                <Grid.Padding>
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <OnPlatform.Android>10,0</OnPlatform.Android>
+                        <OnPlatform.iOS>10,20,10,0</OnPlatform.iOS>
+                        <OnPlatform.WinPhone>10,0</OnPlatform.WinPhone>
+                    </OnPlatform>
+                </Grid.Padding>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="35"/>
                     <ColumnDefinition Width="*"/>
@@ -111,6 +121,7 @@
                                IsVisible="True"
                                VerticalOptions="CenterAndExpand"
                                HorizontalOptions="CenterAndExpand"
+                               Color="Orange"
                                Grid.Row="1"
                                Grid.RowSpan="2"/>
 
@@ -120,7 +131,7 @@
                   Padding="10,0">
                 <!-- Definitions-->
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="80"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
@@ -130,11 +141,13 @@
                 </Grid.RowDefinitions>
 
                 <!-- Studio Picker -->
-                <Label Text="Studio: "
+                <Label Text="Rạp:  "
+                       TextColor="Black"
                        FontSize="Medium"
                        VerticalTextAlignment="Center"/>
                 <Picker x:Name="StudioPicker"
                         Grid.Column="1"
+                        TextColor="Black"
                         SelectedIndexChanged="StudioPicker_SelectedIndexChanged"/>
                 <Image x:Name="StudioLogo"
                        VerticalOptions="Center"
@@ -143,14 +156,15 @@
                        Grid.Column="2"/>
 
                 <!-- Cinema Picker -->
-                <Label Text="Cinema: "
+                <!--<Label Text="Cinema: "
                        FontSize="Medium"
                        Grid.Row="1"
-                       VerticalTextAlignment="Center"/>
+                       VerticalTextAlignment="Center"/>-->
                 <Picker x:Name="CinemaPicker"
-                        Grid.Column="1"
+                        Grid.Column="0"
                         Grid.Row="1"
-                        Grid.ColumnSpan="2"
+                        TextColor="Black"
+                        Grid.ColumnSpan="3"
                         SelectedIndexChanged="CinemaPicker_SelectedIndexChanged"/>
             </Grid>
             <!--#endregion-->
@@ -167,10 +181,13 @@
                             <ViewCell>
                                 <StackLayout Padding="10, 20">
                                     <Label Text="{Binding filmname}"
+                                           TextColor="#002366"
                                            FontSize="Medium"
                                            FontAttributes="Bold"/>
-                                    <Label Text="{Binding theloai}"/>
-                                    <Label Text="{Binding thoigian}"/>
+                                    <Label Text="{Binding theloai}"
+                                           TextColor="#7c0a02"/>
+                                    <Label Text="{Binding thoigian}"
+                                           TextColor="#004225"/>
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>
@@ -186,9 +203,8 @@
                 <!--<local:PinchToZoomContainer>
                     <Image Source="lotte_thuduc_ticketprice.png"/>
                 </local:PinchToZoomContainer>-->
-                <local:ZoomImage Source="lotte_thuduc_ticketprice.png"
-                                 WidthRequest="{Binding Source={x:Reference TicketPriceView}, Path=Witdh}"
-                                 HeightRequest="{Binding Source={x:Reference TicketPriceView}, Path=Height}"/>
+                <Image x:Name="TicketPriceImage"
+                       VerticalOptions="StartAndExpand"/>
             </Grid>
             <!--#endregion-->
         </Grid>

@@ -10,5 +10,6 @@ namespace App1
         public string StudioId { get; set; }
         public string Name { get; set; }
         public string UrlRap { get; set; }
+        public string UrlImg { get; set; }
     }
 }
