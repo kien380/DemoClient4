@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:App1"
-             x:Class="App1.MainPage">
+             x:Class="App1.MainPage"
+             x:Name="MainContentPage">
 
     <Grid ColumnSpacing="0">
         <!--#region Menu (Master View)-->
@@ -200,11 +201,10 @@
             <Grid x:Name="TicketPriceView"
                   Grid.Row="2"
                   IsVisible="False">
-                <!--<local:PinchToZoomContainer>
-                    <Image Source="lotte_thuduc_ticketprice.png"/>
-                </local:PinchToZoomContainer>-->
-                <Image x:Name="TicketPriceImage"
-                       VerticalOptions="StartAndExpand"/>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image x:Name="TicketPriceImage"/>
             </Grid>
             <!--#endregion-->
         </Grid>
