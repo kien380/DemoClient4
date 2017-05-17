@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:App1"
-             x:Class="App1.MainPage">
+             x:Class="App1.MainPage"
+             x:Name="MainContentPage">
 
     <Grid ColumnSpacing="0">
         <!--#region Menu (Master View)-->
@@ -50,12 +51,13 @@
                             <StackLayout Orientation="Horizontal"
                                              Padding="20">
                                 <Image Source="{Binding ImageSource}"
-                                           WidthRequest="35"
-                                           HeightRequest="35"/>
+                                           WidthRequest="25"
+                                           HeightRequest="25"
+                                       VerticalOptions="CenterAndExpand"/>
                                 <Label Text="{Binding Text}"
                                            TextColor="White"
                                            VerticalOptions="Center"
-                                           FontSize="15"
+                                           FontSize="Medium"
                                            Margin="15,0,0,0"/>
                             </StackLayout>
                         </ViewCell>
@@ -200,11 +202,10 @@
             <Grid x:Name="TicketPriceView"
                   Grid.Row="2"
                   IsVisible="False">
-                <!--<local:PinchToZoomContainer>
-                    <Image Source="lotte_thuduc_ticketprice.png"/>
-                </local:PinchToZoomContainer>-->
-                <Image x:Name="TicketPriceImage"
-                       VerticalOptions="StartAndExpand"/>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image x:Name="TicketPriceImage"/>
             </Grid>
             <!--#endregion-->
         </Grid>

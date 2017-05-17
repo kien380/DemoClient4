@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App1.LoginPage">
+    <Grid>
+        <!-- Background -->
+        <Image Source="background.png"
+               Aspect="AspectFill"/>
+        
+        <!-- Logo ISE Entertainment -->
+        <Image Source="logo_ise_entertainment.png"
+               HorizontalOptions="EndAndExpand"
+               VerticalOptions="StartAndExpand"
+               HeightRequest="50"
+               WidthRequest="50"
+               Margin="0,0,10,0"/>
+
+        <!-- Login Form -->
+        <Grid Padding="30, 0"
+              VerticalOptions="CenterAndExpand"
+              HorizontalOptions="FillAndExpand">
+            <!--#region DEFINITION-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="180"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="70"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!--#endregion-->
+
+            <!-- App logo -->
+            <Image Source="app_icon.png" Grid.ColumnSpan="2" HorizontalOptions="CenterAndExpand" Margin="0,0,0,30"/>
+
+            <!-- Username field -->
+            <Label Text="Tên đăng nhập: " Grid.Row="1" TextColor="#cc5500" VerticalOptions="CenterAndExpand"
+                   FontSize="Medium" FontAttributes="Bold"/>
+            <Entry x:Name="UsernameEntry" Grid.Column="1" Grid.Row="1" TextColor="#59260b" BackgroundColor="#ffdfbf"/>
+
+            <!-- Password field -->
+            <Label Text="Mật khẩu: " Grid.Row="2" TextColor="#cc5500" VerticalOptions="CenterAndExpand"
+                   FontSize="Medium" FontAttributes="Bold"/>
+            <Entry x:Name="PasswordEntry" Grid.Column="1" Grid.Row="2" IsPassword="True" 
+                   TextColor="#59260b" BackgroundColor="#ffdfbf"/>
+
+            <!-- Button login & Activity indicator -->
+            <Button Text="    Đăng nhập    " Grid.Row="3" Grid.ColumnSpan="2" HorizontalOptions="CenterAndExpand" 
+                    TextColor="White" BackgroundColor="#cc5500"  Margin="0,30,0,0"
+                    x:Name="LoginButton" Clicked="Button_Login_Clicked"/>
+            <ActivityIndicator x:Name="LoginIndicator" IsRunning="False" Color="#cc5500" Grid.Row="3" Grid.ColumnSpan="2"
+                               VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+        </Grid>
+    </Grid>
+</ContentPage>

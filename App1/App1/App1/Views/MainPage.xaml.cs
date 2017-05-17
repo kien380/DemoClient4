@@ -24,6 +24,16 @@ namespace App1
         private bool IsInitting = true;
         private bool IsStudioChanging = false;
         private bool IsTicketPriceInShow = false;
+        private bool IsBookFilmClicked = false;
+
+        private const string thong_bao = "Thông báo";
+        private const string ban_co_muon_thoat = "Bạn có muốn đăng xuất?";
+        private const string dong_y = "Đồng ý";
+        private const string khong = "Không";
+        private const string lich_chieu = "Lịch Chiếu";
+        private const string gia_ve = "Giá Vé";
+        private const string thong_tin_tai_khoan = "Thông Tin Tài Khoản";
+        private const string dang_xuat = "Đăng Xuất";
         #endregion
 
         #region CONSTRUCTORS
@@ -50,8 +60,10 @@ namespace App1
 
             ListMenuOption.ItemsSource = new List<MenuOption>()
             {
-                new MenuOption { Text = "Lịch Chiếu", ImageSource = "list.png" },
-                new MenuOption { Text = "Giá Vé", ImageSource = "price_tag.png" }
+                new MenuOption { Text = thong_tin_tai_khoan, ImageSource = "user.png" },
+                new MenuOption { Text = lich_chieu, ImageSource = "list.png" },
+                new MenuOption { Text = gia_ve, ImageSource = "price_tag.png" },
+                new MenuOption { Text = dang_xuat, ImageSource = "logout.png" }
             };
 
             // Init TapGesture on Left menu icon
@@ -243,29 +255,55 @@ namespace App1
             }
         }
 
-        private void ListMenuOption_ItemTapped(object sender, ItemTappedEventArgs e)
+        private async void ListMenuOption_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             ListMenuOption.SelectedItem = null;
             var item = e.Item as MenuOption;
-            if(item.Text.Equals("Lịch Chiếu"))
+            if(item.Text.Equals(lich_chieu))
             {
                 MovieScheduleView.IsVisible = true;
                 TicketPriceView.IsVisible = false;
                 IsTicketPriceInShow = false;
+
+                HeaderTitle.Text = item.Text;
+                OnClickLeftMenuIcon();
             }
-            else
+            else if (item.Text.Equals(gia_ve))
             {
                 MovieScheduleView.IsVisible = false;
                 TicketPriceView.IsVisible = true;
                 IsTicketPriceInShow = true;
+
+                HeaderTitle.Text = item.Text;
+                OnClickLeftMenuIcon();
             }
-            HeaderTitle.Text = item.Text;
-            OnClickLeftMenuIcon();
+            else if (item.Text.Equals(thong_tin_tai_khoan))
+            {
+                await Navigation.PushModalAsync(new AccountInfoPage());
+            }
+            else if (item.Text.Equals(dang_xuat))
+            {
+                var IsAcceptLogout = await DisplayAlert(thong_bao, ban_co_muon_thoat, dong_y, khong);
+                if(IsAcceptLogout)
+                {
+                    await Navigation.PopAsync();
+                }
+            }
         }
 
-        private void ListViewLichChieu_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void ListViewLichChieu_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             ListViewLichChieu.SelectedItem = null;
+            if (!IsBookFilmClicked)
+            {
+                IsBookFilmClicked = true;
+                await Navigation.PushModalAsync(new PaymentPage());
+            }
+        }
+
+        protected override void OnAppearing()
+        {
+            IsBookFilmClicked = false;   
         }
         #endregion
     }
