@@ -13,8 +13,7 @@ namespace App1
 		{
 			InitializeComponent();
 
-            MainPage = new MainPage();
-            //MainPage = new HomePage();
+            MainPage = new NavigationPage(new LoginPage());
         }
 
         public static double ScreenWidth { get { return Application.Current.MainPage.Width; } }

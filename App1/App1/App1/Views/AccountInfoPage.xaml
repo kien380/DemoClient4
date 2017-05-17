@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App1.AccountInfoPage">
+    <Grid>
+        <Image Source="background.png"
+               Aspect="AspectFill"/>
+
+        <StackLayout Padding="20">
+            <!-- Header -->
+            <StackLayout Orientation="Horizontal">
+                <Image x:Name="AvatarUser" Source="avatar_user.png"
+                       HeightRequest="80" WidthRequest="80"
+                       Margin="0,20,10,0"/>
+                <StackLayout>
+                    <Label x:Name="UsernameLabel" Text="BaoNV" FontSize="Large" TextColor="#00008b"
+                           VerticalOptions="EndAndExpand"/>
+                    <BoxView Color="#00008b" HeightRequest="1" WidthRequest="150"/>
+                </StackLayout>
+                <Image Source="close.png"
+                       VerticalOptions="StartAndExpand"
+                       HorizontalOptions="EndAndExpand"
+                       WidthRequest="25"
+                       HeightRequest="25">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_Close"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </StackLayout>
+
+            <!-- Infos -->
+            <Grid HorizontalOptions="FillAndExpand"
+                  VerticalOptions="CenterAndExpand">
+                <!--#region DEFINITION-->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <!--#endregion-->
+
+                <!-- Họ và tên -->
+                <Label Text="Họ và tên: " TextColor="#cc5500" FontSize="Medium" VerticalTextAlignment="Center" />
+                <Label x:Name="HotenLabel" Text="Nguyễn Văn Bảo" TextColor="#59260b" FontSize="Medium"
+                       Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center"/>
+                <BoxView Color="#e9692c" HeightRequest="1" Margin="0,10,0,0" Grid.Row="1" Grid.ColumnSpan="2"/>
+
+                <!-- SĐT -->
+                <Label Text="Số ĐT: " TextColor="#cc5500" FontSize="Medium" Grid.Row="2" VerticalTextAlignment="Center"/>
+                <Label x:Name="SDTLabel" Text="0123 456 789" TextColor="#59260b" FontSize="Medium"
+                       Grid.Row="2" Grid.Column="1" VerticalTextAlignment="Center"/>
+                <BoxView Color="#e9692c" HeightRequest="1" Margin="0,10,0,0" Grid.Row="3" Grid.ColumnSpan="2"/>
+
+                <!-- Email -->
+                <Label Text="Email: " TextColor="#cc5500" FontSize="Medium" Grid.Row="4" VerticalTextAlignment="Center"/>
+                <Label x:Name="EmailLabel" Text="baodepchai@gmail.com" TextColor="#59260b" FontSize="Medium"
+                       Grid.Row="4" Grid.Column="1" VerticalTextAlignment="Center"/>
+                <BoxView Color="#e9692c" HeightRequest="1" Margin="0,10,0,0" Grid.Row="5" Grid.ColumnSpan="2"/>
+
+                <!-- Địa chỉ -->
+                <Label Text="Địa chỉ: " TextColor="#cc5500" FontSize="Medium" Grid.Row="6" VerticalTextAlignment="Center"/>
+                <Label x:Name="DiaChiLabel" Text="KTX khu B, ĐHQG-HCM" TextColor="#59260b" FontSize="Medium"
+                       Grid.Row="6" Grid.Column="1" VerticalTextAlignment="Center"/>
+                <BoxView Color="#e9692c" HeightRequest="1" Margin="0,10,0,0" Grid.Row="7" Grid.ColumnSpan="2"/>
+
+                <!-- Số dư TK -->
+                <Label Text="Số dư TK: " TextColor="#cc5500" FontSize="Medium" Grid.Row="8" VerticalTextAlignment="Center"/>
+                <Label x:Name="SoDuTKLabel" Text="5.000.000 VNĐ" TextColor="#00008b" FontSize="Medium"
+                       Grid.Row="8" Grid.Column="1" VerticalTextAlignment="Center"/>
+            </Grid>
+
+            <Button Text="Nạp tài khoản"
+                    Clicked="Button_Clicked_NapTaiKhoan"
+                    BackgroundColor="#cc5500"
+                    TextColor="White"/>
+        </StackLayout>
+    </Grid>
+</ContentPage>

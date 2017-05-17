@@ -15,12 +15,26 @@
     <Compile Include="$(MSBuildThisFileDirectory)Customs\PinchToZoomContainer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Customs\ZoomImage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helper\Service.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\AccountLogin.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Cinema.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\LichChieu.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\MenuOption.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Studio.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AccountLoginVm.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\AccountInfoPage.xaml.cs">
+      <DependentUpon>AccountInfoPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\PaymentPage.xaml.cs">
+      <DependentUpon>PaymentPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -29,6 +43,24 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\PaymentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AccountInfoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
